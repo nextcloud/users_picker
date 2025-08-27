@@ -24,7 +24,7 @@
 			</div>
 			<NcEmptyContent class="empty-content">
 				<template #icon>
-					<Account :size="20" />
+					<AccountOutline :size="20" />
 				</template>
 			</NcEmptyContent>
 		</div>
@@ -52,7 +52,7 @@ import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcEmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
 
-import Account from 'vue-material-design-icons/Account.vue'
+import AccountOutline from 'vue-material-design-icons/AccountOutline.vue'
 import ArrowRightIcon from 'vue-material-design-icons/ArrowRight.vue'
 
 export default {
@@ -62,7 +62,7 @@ export default {
 		NcSelect,
 		NcButton,
 		NcEmptyContent,
-		Account,
+		AccountOutline,
 		ArrowRightIcon,
 	},
 

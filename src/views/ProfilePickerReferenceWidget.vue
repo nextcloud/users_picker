@@ -5,7 +5,7 @@
 				<NcAvatar :user="richObject.user_id" :size="48" class="profile-card__avatar" />
 				<div class="profile-card__title">
 					<a :href="richObject.url" target="_blank">
-						<Account :size="20" />
+						<AccountOutline :size="20" />
 						<strong>
 							{{ richObject.email !== null ? richObject.title + ' - ' + richObject.email : richObject.title }}
 						</strong>
@@ -18,7 +18,7 @@
 						{{ richObject.headline }}
 					</span>
 					<span v-if="richObject.location" class="location">
-						<MapMarker :size="20" />
+						<MapMarkerOutline :size="20" />
 						<template v-if="richObject.location_url">
 							<a :href="richObject.location_url" class="external" target="_blank">{{ richObject.location }}</a>
 						</template>
@@ -35,7 +35,7 @@
 						{{ richObject.organisation }}
 					</span>
 					<span v-if="richObject.role" class="role">
-						<Handshake :size="20" />
+						<HandshakeOutline :size="20" />
 						{{ richObject.role }}
 					</span>
 					<span v-if="richObject.bio"
@@ -53,22 +53,22 @@
 <script>
 import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 
-import Account from 'vue-material-design-icons/Account.vue'
-import MapMarker from 'vue-material-design-icons/MapMarker.vue'
+import AccountOutline from 'vue-material-design-icons/AccountOutline.vue'
+import MapMarkerOutline from 'vue-material-design-icons/MapMarker.vue'
 import Web from 'vue-material-design-icons/Web.vue'
 import Domain from 'vue-material-design-icons/Domain.vue'
-import Handshake from 'vue-material-design-icons/Handshake.vue'
+import HandshakeOutline from 'vue-material-design-icons/HandshakeOutline.vue'
 import TextAccount from 'vue-material-design-icons/TextAccount.vue'
 
 export default {
 	name: 'ProfilePickerReferenceWidget',
 	components: {
 		NcAvatar,
-		Account,
-		MapMarker,
+		AccountOutline,
+		MapMarkerOutline,
 		Web,
 		Domain,
-		Handshake,
+		HandshakeOutline,
 		TextAccount,
 	},
 	props: {
