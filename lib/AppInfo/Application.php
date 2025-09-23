@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace OCA\UsersPicker\AppInfo;
 
-use OCP\AppFramework\App;
-use OCP\AppFramework\Bootstrap\IRegistrationContext;
-use OCP\AppFramework\Bootstrap\IBootContext;
-use OCP\AppFramework\Bootstrap\IBootstrap;
-use OCP\Collaboration\Reference\RenderReferenceEvent;
-
 use OCA\UsersPicker\Listener\UsersPickerReferenceListener;
 use OCA\UsersPicker\Reference\ProfilePickerReferenceProvider;
+use OCP\AppFramework\App;
+use OCP\AppFramework\Bootstrap\IBootContext;
+use OCP\AppFramework\Bootstrap\IBootstrap;
+
+use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\Collaboration\Reference\RenderReferenceEvent;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'users_picker';
@@ -28,4 +28,3 @@ class Application extends App implements IBootstrap {
 	public function boot(IBootContext $context): void {
 	}
 }
-
