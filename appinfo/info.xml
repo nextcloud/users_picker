@@ -19,6 +19,6 @@
 	<screenshot>https://raw.githubusercontent.com/nextcloud/users_picker/main/screenshots/users_picker_2.png</screenshot>
 	<screenshot>https://raw.githubusercontent.com/nextcloud/users_picker/main/screenshots/users_picker_3.png</screenshot>
 	<dependencies>
-		<nextcloud min-version="30" max-version="32"/>
+		<nextcloud min-version="30" max-version="33"/>
 	</dependencies>
 </info>

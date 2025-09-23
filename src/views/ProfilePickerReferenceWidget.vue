@@ -51,10 +51,10 @@
 </template>
 
 <script>
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
+import NcAvatar from '@nextcloud/vue/components/NcAvatar'
 
 import AccountOutline from 'vue-material-design-icons/AccountOutline.vue'
-import MapMarkerOutline from 'vue-material-design-icons/MapMarker.vue'
+import MapMarkerOutline from 'vue-material-design-icons/MapMarkerOutline.vue'
 import Web from 'vue-material-design-icons/Web.vue'
 import Domain from 'vue-material-design-icons/Domain.vue'
 import HandshakeOutline from 'vue-material-design-icons/HandshakeOutline.vue'
@@ -84,6 +84,9 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+	},
+	beforeMount() {
+		console.debug('ProfilePickerReferenceWidget', this.richObject)
 	},
 }
 </script>
