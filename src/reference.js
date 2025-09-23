@@ -1,4 +1,4 @@
-import { registerWidget, registerCustomPickerElement, NcCustomPickerRenderResult } from '@nextcloud/vue/dist/Components/NcRichText.js'
+import { registerWidget, registerCustomPickerElement, NcCustomPickerRenderResult } from '@nextcloud/vue/components/NcRichText'
 import { linkTo } from '@nextcloud/router'
 import { getCSPNonce } from '@nextcloud/auth'
 
@@ -6,32 +6,37 @@ __webpack_nonce__ = getCSPNonce() // eslint-disable-line
 __webpack_public_path__ = linkTo('users_picker', 'js/') // eslint-disable-line
 
 registerWidget('users_picker_profile', async (el, { richObjectType, richObject, accessible }) => {
-	const { default: Vue } = await import(/* webpackChunkName: "reference-issue-lazy" */'vue')
-	const { default: UsersPickerReferenceWidget } = await import(/* webpackChunkName: "reference-issue-lazy" */'./views/ProfilePickerReferenceWidget.vue')
-	Vue.mixin({ methods: { t, n } })
-	const Widget = Vue.extend(UsersPickerReferenceWidget)
-	new Widget({
-		propsData: {
+	const { createApp } = await import('vue')
+	const { default: ProfilePickerReferenceWidget } = await import(/* webpackChunkName: "reference-maplibre-lazy" */'./views/ProfilePickerReferenceWidget.vue')
+
+	const app = createApp(
+		ProfilePickerReferenceWidget,
+		{
 			richObjectType,
 			richObject,
 			accessible,
 		},
-	}).$mount(el)
-})
+	)
+	app.mixin({ methods: { t, n } })
+	app.mount(el)
+}, () => {}, { hasInteractiveView: false })
 
 registerCustomPickerElement('profile_picker', async (el, { providerId, accessible }) => {
-	const { default: Vue } = await import(/* webpackChunkName: "vue-lazy" */'vue')
-	Vue.mixin({ methods: { t, n } })
-	const { default: UserProfilesCustomPicker } = await import(/* webpackChunkName: "image-picker-lazy" */'./components/ProfilesCustomPicker.vue')
-	const Element = Vue.extend(UserProfilesCustomPicker)
-	const vueElement = new Element({
-		propsData: {
+	const { createApp } = await import('vue')
+	const { default: ProfilesCustomPicker } = await import('./components/ProfilesCustomPicker.vue')
+
+	const app = createApp(
+		ProfilesCustomPicker,
+		{
 			providerId,
 			accessible,
 		},
-	}).$mount(el)
-	return new NcCustomPickerRenderResult(vueElement.$el, vueElement)
+	)
+	app.mixin({ methods: { t, n } })
+	app.mount(el)
+
+	return new NcCustomPickerRenderResult(el, app)
 }, (el, renderResult) => {
 	console.debug('Users picker custom picker destroy callback. el', el, 'renderResult:', renderResult)
-	renderResult.object.$destroy()
+	renderResult.object.unmount()
 }, 'normal')

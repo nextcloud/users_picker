@@ -15,6 +15,7 @@
 					:user-select="true"
 					:multiple="false"
 					:options="options"
+					label="displayName"
 					@search="searchForProfile"
 					@option:selecting="resolveResult">
 					<template #no-options="{ search }">
@@ -30,7 +31,7 @@
 		</div>
 		<div class="profile-picker__footer">
 			<NcButton v-if="selectedProfile !== null"
-				type="primary"
+				variant="primary"
 				:aria-label="t('users_picker', 'Insert selected user profile link')"
 				:disabled="loading || selectedProfile === null"
 				@click="submit">
@@ -48,9 +49,9 @@ import axios from '@nextcloud/axios'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 import debounce from 'debounce'
 
-import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcEmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import NcSelect from '@nextcloud/vue/components/NcSelect'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
 
 import AccountOutline from 'vue-material-design-icons/AccountOutline.vue'
 import ArrowRightIcon from 'vue-material-design-icons/ArrowRight.vue'
@@ -148,15 +149,16 @@ export default {
 		submit() {
 			this.resultUrl = window.location.origin + generateUrl(`/u/${this.selectedProfile.user.trim().toLowerCase()}`, null, { noRewrite: true })
 			this.$emit('submit', this.resultUrl)
+			this.$el.dispatchEvent(new CustomEvent('submit', { detail: this.resultUrl, bubbles: true }))
 		},
 
-		resolveResult(selectedItem) {
+		async resolveResult(selectedItem) {
 			this.loading = true
 			this.abortController = new AbortController()
 			this.selectedProfile = selectedItem
 			this.resultUrl = window.location.origin + generateUrl(`/u/${this.selectedProfile.user.trim().toLowerCase()}`, null, { noRewrite: true })
 			try {
-				const res = axios.get(generateOcsUrl('references/resolve', 2) + '?reference=' + encodeURIComponent(this.resultUrl), {
+				const res = await axios.get(generateOcsUrl('references/resolve', 2) + '?reference=' + encodeURIComponent(this.resultUrl), {
 					signal: this.abortController.signal,
 				})
 				this.reference = res.data.ocs.data.references[this.resultUrl]
