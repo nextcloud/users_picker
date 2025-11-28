@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.2 - 2025-11-28]
+
+### Changed
+- npm packages updated 
+- max NC version bumped to 33
+- migrated to Vue3 and nc/vue 9
+
 ## [1.2.1 - 2025-08-29]
 
 ### Changed
