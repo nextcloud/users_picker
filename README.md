@@ -1,3 +1,7 @@
+# Archived repository
+
+The dashboard app was moved to the Profile app with Nextcloud 34 and is now part of the [server repository](https://github.com/nextcloud/server/tree/master/apps/profile) Please head there for issue reporting and the app code.
+
 # Nextcloud Users picker
 
 This app adds ability to search for users profiles via smart picker.
